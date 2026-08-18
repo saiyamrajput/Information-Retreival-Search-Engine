@@ -1,6 +1,1 @@
-The following libraries are needed:
 
-* python3
-* jupyter
-* pandas
-* scipy.io
