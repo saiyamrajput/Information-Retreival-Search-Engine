@@ -24,6 +24,7 @@ Thumbs.db
 .env.*
 
 # Local data
+cran/
 
 # Generated outputs
 
