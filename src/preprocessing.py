@@ -73,6 +73,3 @@ def inverted_index(doc):
             inverted_index_dic[t][doc_id] += 1
     
     return inverted_index_dic
-
-documents = load("../cran/cran.all.1400")
-index = inverted_index(documents)

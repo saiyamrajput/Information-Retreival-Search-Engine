@@ -57,19 +57,19 @@ for term in terms:
     expected = tokens.count(term)
     calculated = inverted_index_doc.get(term, {}).get(doc_id, 0)
 
-    print("Term:", term)
+    print("\nTerm:", term)
     print("Expected:", expected)
     print("Calculated:", calculated)
 
     if expected == calculated:
-        print("Test passed")
+        print("Correct Frequency Test passed")
     else:
-        print("Test failed")
+        print("Correct Frequency Test failed")
     
 # missing term
 missing_value = "kkhg"
 if missing_value in inverted_index_doc:
-    print("Test Failed for missing value")
+    print("Missing term Test Failed for missing value")
 else:
-   print("{}")
+   print("\nMissing term Test Passed\n{}")
     
