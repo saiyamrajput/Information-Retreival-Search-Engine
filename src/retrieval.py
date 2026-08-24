@@ -1,4 +1,5 @@
 from preprocessing import tokenizer
+import string
 
 def single_term_retrieval(term, inverted_index):
     if term in inverted_index:
@@ -32,8 +33,9 @@ def or_multiple_terms_retrieval(terms, inverted_index):
 
     return list(result)
 
-def search(query,operator, inverted_index):
+def search(query, operator, inverted_index):
     query = tokenizer(query)
+    operator = operator.upper()
 
     if operator == "AND":
         return and_multiple_terms_retrieval(query, inverted_index)
