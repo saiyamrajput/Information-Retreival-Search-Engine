@@ -77,7 +77,7 @@ vocabulary = list(invertedIndex_cranfield.keys())
 
 documentIDs = [document["Document ID"] for document in documents_cranfield]
 
-query_cranfield = "wing flow"
+query_cranfield = "what similarity laws must be obeyed when constructing aeroelastic models of heated high speed aircraft."
 
 finalResult = rank_retrieval(query_cranfield, invertedIndex_cranfield, N_cranfield, vocabulary, documentIDs)
 
