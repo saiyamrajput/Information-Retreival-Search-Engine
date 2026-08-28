@@ -82,3 +82,65 @@ def rank_retrieval(query, inverted_index, total_documents, vocabulary, documentI
     final_index.sort(key=lambda i: i[1], reverse=True)
 
     return final_index
+
+def document_length(document):
+    tokens = tokenizer(document["Text"])
+    return len(tokens)
+
+def average_document_length(documents):
+    document_lengths = []
+    total = 0
+
+    for i in documents:
+        length = document_length(i)
+        document_lengths.append(length)
+        total += length
+    
+    return total / len(document_lengths)
+
+def bm25_idf(term, inverted_index,total_documents):
+    df = document_frequency(term, inverted_index)
+
+    return math.log((total_documents - df + 0.5) / (df + 0.5) + 1)
+
+def bm25_term_score(term, documentID, inverted_index, total_documents, 
+        document_length_value, average_document_length_value, k=1.5, b=0.75):
+        
+        tf = term_frequency(term, inverted_index, documentID)
+        idf = bm25_idf(term, inverted_index, total_documents)
+
+        len_normalization = 1 - b + b * (document_length_value/ average_document_length_value)
+
+        score = (idf * (tf * (k + 1))) / (tf + (k * len_normalization))
+
+        return score
+
+def bm25_document_score(query, document, inverted_index, total_documents, 
+        average_document_length_value, k=1.5, b=0.75):
+    
+    terms = tokenizer(query)
+    document_length_value = document_length(document)
+
+    score = 0
+
+    for t in terms:
+        score += bm25_term_score(t, document["Document ID"], inverted_index, total_documents, document_length_value,
+                                 average_document_length_value, k, b)
+
+    return score
+
+def bm25_rank_retrieval(query, documents, inverted_index, total_documents):
+    average_document_length_value = average_document_length(documents)
+
+    final_index = []
+
+    for i in documents:
+        score = bm25_document_score(query, i, inverted_index, total_documents,
+                                    average_document_length_value)
+        
+        final_index.append((i["Document ID"], score))
+
+    final_index.sort(key=lambda i: i[1], reverse=True)
+
+    return final_index   
+ 
