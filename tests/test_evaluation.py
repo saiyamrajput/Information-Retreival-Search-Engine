@@ -113,5 +113,7 @@ comparisonTable = [
     }
 ]
 
+print("\n")
+
 for row in comparisonTable:
     print(row)
