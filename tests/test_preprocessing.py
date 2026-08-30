@@ -74,7 +74,7 @@ else:
    print("\nMissing term Test Passed\n{}")
     
 # checking load query
-queries = load_query("../cran/cran.qry")
+queries = load_query("cran/cran.qry")
 
 print("Number of queries:", len(queries))
 print("Query 1:", queries[0])
