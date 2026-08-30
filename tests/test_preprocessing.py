@@ -1,6 +1,6 @@
 import sys
 sys.path.append("src")
-from preprocessing import tokenizer, load, inverted_index
+from preprocessing import tokenizer, load, inverted_index, load_query
 
 # tokenizer test
 line = "Machine Learning is very useful!! Everyone should atleast try learning it"
@@ -73,3 +73,14 @@ if missing_value in inverted_index_doc:
 else:
    print("\nMissing term Test Passed\n{}")
     
+# checking load query
+queries = load_query("../cran/cran.qry")
+
+print("Number of queries:", len(queries))
+print("Query 1:", queries[0])
+
+assert len(queries) == 225
+
+assert queries[2]["Query ID"] == 4
+
+assert queries[0]["Text"].strip() == "what similarity laws must be obeyed when constructing aeroelastic models of heated high speed aircraft ."

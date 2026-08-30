@@ -37,6 +37,53 @@ def load(file_path):
 
     return doc_content
 
+def load_query(file_path):
+    queries = []
+    query = None
+    query_dictionary_key = None
+
+    with open(file_path, "r") as file:
+        for line in file:
+            line = line.strip()
+
+            if line.startswith(".I"):
+                if query is not None:
+                    queries.append(query)
+                
+                query = { "Query ID": int(line.split()[1]),
+                          "Text": ""
+                    }
+                query_dictionary_key = None
+
+            elif line == ".W":
+                query_dictionary_key = "Text"
+            elif (query is not None and query_dictionary_key is not None):
+                query[query_dictionary_key] += line + " "
+
+    if query is not None:
+        queries.append(query)
+
+    return queries
+
+def load_qrels(file_path):
+    qrel = {}
+
+    with open(file_path, "r") as file:
+        for line in file:
+            qry_ID, doc_ID, grade = line.split()
+
+            qry_ID = int(qry_ID)
+            doc_ID = int(doc_ID)
+            grade = int(grade)
+
+            if grade > 0:
+                if qry_ID not in qrel:
+                    qrel[qry_ID] = set()
+            
+                qrel[qry_ID].add(doc_ID)
+    
+    return qrel
+
 def tokenizer(string_of_words):
 
     # converting to lower case
