@@ -223,4 +223,4 @@ cran/
 
 These corpus files are not included in this repository.
 
-5. Run the test files in the `tests/` directory to reproduce the preprocessing, retrieval, ranking, and evaluation checks.
+5. Run the tests from the repository root.
