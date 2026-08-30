@@ -49,7 +49,7 @@ print(search("wing or computer", "OR", inverted_index_multiple_terms))
 # Cranfield
 #####################
 
-inverted_index_search = inverted_index(load("../cran/cran.all.1400"))
+inverted_index_search = inverted_index(load("cran/cran.all.1400"))
 
 result_for_and = search("wing flow", "AND", inverted_index_search)
 result_for_or = search("wing flow", "OR", inverted_index_search)

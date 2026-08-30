@@ -20,8 +20,8 @@ recall_tinyCorpus = recall_at_k(rankedList_tinyCorpus, relevant_documentIDs_tiny
 assert recall_tinyCorpus == 0.75
 
 # checking load_qrels and load_query
-qrels = load_qrels("../cran/cranqrel")
-queries = load_query("../cran/cran.qry")
+qrels = load_qrels("cran/cranqrel")
+queries = load_query("cran/cran.qry")
 
 query_by_id = {}
 
@@ -41,7 +41,7 @@ assert 285 not in query1
 # checking precision and recall using ranked retrieval we created in ranking.py
 # Cranfield Corpus Testing
 
-documents_cranfield = load("../cran/cran.all.1400")
+documents_cranfield = load("cran/cran.all.1400")
 
 invertedIndex_cranfield = inverted_index(documents_cranfield)
 

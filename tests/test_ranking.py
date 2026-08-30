@@ -67,7 +67,7 @@ print(rank_retrieval(query, inverted_index1, N, vocabulary, documentIDs))
 
 # Cranfield Corpus Testing
 
-documents_cranfield = load("../cran/cran.all.1400")
+documents_cranfield = load("cran/cran.all.1400")
 
 invertedIndex_cranfield = inverted_index(documents_cranfield)
 

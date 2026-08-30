@@ -36,7 +36,7 @@ print("\nInverted Index:")
 print(index)
 
 # document load and inverted index check using cranfield corpus
-documents = load("../cran/cran.all.1400")
+documents = load("cran/cran.all.1400")
 
 if len(documents) != 1400:
     sys.exit("Data not properly loaded")
